@@ -1,18 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CommentDetail from './CommentDetail';
+import React from "react";
+import ReactDOM from "react-dom";
+import CommentDetail from "./CommentDetail";
 const App = () => {
+  var loop = () => {
+    var comments = [];
+    for (let i = 0; i < 16; i++) {
+      comments.push(<CommentDetail key={i} />);
+    }
+    return comments;
+  };
   return (
     <div className="ui container comments">
-      <CommentDetail />
-      <CommentDetail />
-      <CommentDetail/>
-      <CommentDetail/>
-      <CommentDetail/>
-      <CommentDetail/>
-      
+      <div className="ui three column divided grid">
+        {loop()}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<App />, document.querySelector("#root"));

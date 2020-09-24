@@ -22,5 +22,4 @@ const CommentDetail = () => {
       </div>
   )
 }
-
-export default CommentDetail;
+export default CommentDetail;     
