@@ -15,6 +15,7 @@ class App extends React.Component {
     latitude: null,
     errorMessage: null,
   };
+  
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       (position) => this.setState({ latitude: position.coords.latitude }),
@@ -35,4 +36,5 @@ class App extends React.Component {
     return <div>{this.renderContent()}</div>;
   }
 }
+
 ReactDom.render(<App />, document.querySelector("#root"));

@@ -25,6 +25,10 @@
   height: 100vh;
 }
 
+.text-content{
+  text-align: center;
+}
+
 .summer{
   background-color: orange;
 }
