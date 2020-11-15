@@ -13,7 +13,7 @@ class Search extends React.Component {
   };
   componentDidMount() {
     unsplash.search
-      .photos("random", 1, 15)
+      .photos("girls", 1, 25)
       .then(toJson)
       .then((data) => {
         this.setState({ images: data.results });
