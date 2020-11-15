@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+#API KYES
+.env
+
 # production
 /build
 

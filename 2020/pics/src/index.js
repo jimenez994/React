@@ -1,14 +1,13 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import Search from './Search'
+import React from "react";
+import ReactDom from "react-dom";
+import Search from "./Search";
 
 const App = () => {
   return (
     <div>
-      hello world
-       <Search/>
+      <Search />
     </div>
-  )
-}
+  );
+};
 
-ReactDom.render(<App/>, document.querySelector("#root"))
+ReactDom.render(<App />, document.querySelector("#root"));
