@@ -25,12 +25,14 @@ class Search extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    unsplash.search
+    if (this.state.search !== "") {
+      unsplash.search
       .photos(this.state.search, 1, 15)
       .then(toJson)
       .then((data) => {
         this.setState({ images: data.results });
       });
+    }
   };
 
   render() {
@@ -43,7 +45,7 @@ class Search extends React.Component {
               placeholder="Search..."
               onChange={this.onChangeHandler}
             />
-            <button className="ui teal big icon button">
+            <button className="ui grey big icon button">
               <i className="search icon"></i>
             </button>
           </div>
