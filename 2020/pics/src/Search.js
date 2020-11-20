@@ -17,7 +17,11 @@ class Search extends React.Component {
       .then(toJson)
       .then((data) => {
         this.setState({ images: data.results });
-      });
+      })
+      .catch((err) => {
+        console.log(err);
+      }
+      )
   }
   onChangeHandler = (event) => {
     this.setState({ search: event.target.value });
