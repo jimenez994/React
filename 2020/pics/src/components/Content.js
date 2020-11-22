@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+// import "./style.css";
 import './CardItem';
 import CardItem from "./CardItem";
 
@@ -10,7 +10,7 @@ const Content = (props) => {
       <CardItem img={img} key={img.id}/>
     ));
   }
-  return <section id="photos">{content}</section>;
+  return <section className="photos">{content}</section>;
 };
 
 export default Content;

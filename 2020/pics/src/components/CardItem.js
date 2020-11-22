@@ -1,12 +1,11 @@
 import React from 'react';
 import { Image, Modal } from 'semantic-ui-react'
-import "./style.css";
+// import "./style.css";
 
 
 const CardItem = (props) => {
   const [open, setOpen] = React.useState(false)
 
-  // console.log(props.img);
   return (
     <Modal className="modal-img"
       basic

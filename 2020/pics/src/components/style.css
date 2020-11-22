@@ -2,18 +2,18 @@
   padding: 1em;
 }
 
-#photos {
+.photos {
   /* Prevent vertical gaps */
   line-height: 0;
-  /* -webkit-column-count: 5;
+  -webkit-column-count: 5;
   -webkit-column-gap:   0px;
   -moz-column-count:    5;
-  -moz-column-gap:      0px; */
+  -moz-column-gap:      0px;
   column-count:         5;
   column-gap:           0em;  
 }
 
-#photos img {
+.photos img {
   /* Just in case there are inline attributes */
   width: 100% !important;
   height: auto !important;
@@ -26,7 +26,8 @@
   border: none;
   color: white;
   padding: 0;
-  outline: none;
+  margin: 0;
+  /* outline: none; */
 }
 
 .modal-img{
