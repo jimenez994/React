@@ -15,7 +15,7 @@ class App extends React.Component {
       accessKey: process.env.REACT_APP_UNSPLASH_KEY
     });
     unsplashApi.search
-      .photos("girls", 1, 25)
+      .photos("red smile", 1, 25)
       .then(toJson)
       .then((data) => {
         this.setState({ images: data.results });
@@ -30,7 +30,7 @@ class App extends React.Component {
   onFormSubmit = async (search) => {
     // opt 1 --------axios refactor in api folder
     const response = await unsplash.get('/search/photos', {
-      params: { query: search }
+      params: { query: search, per_page: 100 }
     })
     this.setState({ images: response.data.results })
 

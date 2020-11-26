@@ -10,7 +10,7 @@ const Content = (props) => {
       <CardItem img={img} key={img.id}/>
     ));
   }
-  return <section className="photos">{content}</section>;
+  return <section className="photos image-list">{content}</section>;
 };
 
 export default Content;
