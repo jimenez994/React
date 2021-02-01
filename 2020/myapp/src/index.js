@@ -19,13 +19,18 @@ class App extends React.Component {
     e.preventDefault();
     this.setState({ taskList: [ this.state.task, ...this.state.taskList]})
     this.setState({ task: "" })
-    console.log(this.state.taskList);
+  }
+
+  onDelete = (id) => {
+    const tasks = [...this.state.taskList];
+    tasks.splice(id, 1);
+    this.setState({taskList: tasks})
   }
 
   render() {
     return <div>
       <Form onChange={this.onChange} task={this.state.task} onSubmit={this.onSubmit}/>
-      <List taskList={this.state.taskList}/>
+      <List taskList={this.state.taskList} onDelete={this.onDelete}/>
     </div>;
   }
 }

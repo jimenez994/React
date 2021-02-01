@@ -1,5 +1,6 @@
 // import the react and reactDom libraries
-import React, { useState } from "react";
+import React from "react";
+// import React, { useState } from "react";
 
 function date() {
   return (new Date().toDateString().toString());

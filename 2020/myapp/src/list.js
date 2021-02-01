@@ -5,11 +5,11 @@ const List = (props) => {
   let content = "";
   if (props.taskList.length !== 0) {
     content = props.taskList.map((task,id) =>
-      <Task key={id} task={task}/>)
+      <Task key={id} taskId={id} task={task} onDelete={props.onDelete}/>)
   }
 
   return (
-    <div>
+    <div >
       { content }
     </div>
   )
