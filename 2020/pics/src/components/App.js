@@ -61,7 +61,6 @@ class App extends React.Component {
       <div className="ui container" style={{ marginTop: "10px" }}>
         <Search onSubmit={this.onFormSubmit} />
         <Content data={this.state.images} />
-        
     </div>
   );
 }

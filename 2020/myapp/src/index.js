@@ -1,26 +1,33 @@
-// import the react and reactDom libraries
-import React, { useState } from "react";
+import React from "react";
 import ReactDom from "react-dom";
+import Form from './form';
+import List from "./list";
 
-function date() {
-  return (new Date().toDateString().toString());
-  // return "yes"
-};
-// Create a react component
-const App = () => {
-  const some = "this is my text";
-  const style = { color: 'blue' };
-  const [name, setName] = useState('some name');
-  return (
-    <div>
-      <h1 style={style}> This is iron men {some} {date()}</h1>
-      <h2>{name}</h2>
-      <label htmlFor="name">Name: </label>
-      <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
-      <button>Submit</button>
-    </div>
-  );
-};
+class App extends React.Component {
+  state = {
+    latitude: null,
+    errorMessage: null,
+    taskList:[],
+    task: ""
+  };
+  
+  onChange = (event) => {
+    this.setState({ task: event })
+  }
 
-// take the react component and show it on the screen
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ taskList: [ this.state.task, ...this.state.taskList]})
+    this.setState({ task: "" })
+    console.log(this.state.taskList);
+  }
+
+  render() {
+    return <div>
+      <Form onChange={this.onChange} task={this.state.task} onSubmit={this.onSubmit}/>
+      <List taskList={this.state.taskList}/>
+    </div>;
+  }
+}
+
 ReactDom.render(<App />, document.querySelector("#root"));
