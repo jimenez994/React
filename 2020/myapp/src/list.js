@@ -5,7 +5,7 @@ const List = (props) => {
   let content = "";
   if (props.taskList.length !== 0) {
     content = props.taskList.map((taskObj, id) =>
-      <Task key={taskObj.id} taskId={id} task={taskObj.task} onDelete={props.onDelete}/>)
+      <Task onSubmitEdit={props.onSubmitEdit} key={taskObj.id} taskId={id} taskObj={taskObj} onDelete={props.onDelete}/>)
   }
 
   return (

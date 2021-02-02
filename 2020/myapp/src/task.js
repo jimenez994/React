@@ -16,11 +16,11 @@ class Task extends React.Component {
   render() {
     let content;
     if (this.state.show) {
-      content = (<Edit/>)
+      content = (<Edit hideEdit={this.showEdit} onSubmitEdit={this.props.onSubmitEdit} taskObj={this.props.taskObj} />)
     }
     return (
       <div>
-      <h4>{this.props.task} </h4>
+      <h4>{this.props.taskObj.task} </h4>
       <button onClick={ this.showEdit }>Edit</button> 
         <button onClick={() => this.props.onDelete(this.props.taskId)}>X {this.props.taskId}</button>
         {content}

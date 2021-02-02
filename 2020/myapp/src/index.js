@@ -10,7 +10,7 @@ class App extends React.Component {
     latitude: null,
     errorMessage: null,
     taskList:[],
-    task: ""
+    task: "", 
   };
   
   onChange = (event) => {
@@ -24,6 +24,14 @@ class App extends React.Component {
     this.setState({ task: "" });
   }
 
+  onSubmitEdit = (e,id) => {
+    console.log(e);
+    console.log(id);
+    let updatedTaskList = this.state.taskList
+    updatedTaskList[id] = e
+    this.setState({taskList: updatedTaskList})
+  }
+
   onDelete = (id) => {
     const tasks = [...this.state.taskList];
     tasks.splice(id, 1);
@@ -33,7 +41,7 @@ class App extends React.Component {
   render() {
     return <div>
       <Form onChange={this.onChange} task={this.state.task} onSubmit={this.onSubmit}/>
-      <List taskList={this.state.taskList} onDelete={this.onDelete}/>
+      <List onSubmitEdit={ this.onSubmitEdit } taskList={this.state.taskList} onDelete={this.onDelete}/>
     </div>;
   }
 }
