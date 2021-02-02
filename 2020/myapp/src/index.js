@@ -2,8 +2,10 @@ import React from "react";
 import ReactDom from "react-dom";
 import Form from './form';
 import List from "./list";
+import nextId from "react-id-generator";
 
 class App extends React.Component {
+
   state = {
     latitude: null,
     errorMessage: null,
@@ -17,14 +19,15 @@ class App extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.setState({ taskList: [ this.state.task, ...this.state.taskList]})
-    this.setState({ task: "" })
+    let genId = nextId();
+    this.setState({ taskList: [{ id: genId, task: this.state.task }, ...this.state.taskList] });
+    this.setState({ task: "" });
   }
 
   onDelete = (id) => {
     const tasks = [...this.state.taskList];
     tasks.splice(id, 1);
-    this.setState({taskList: tasks})
+    this.setState({ taskList: tasks });
   }
 
   render() {

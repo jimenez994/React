@@ -5,6 +5,7 @@ const Edit = (props) =>  {
     return (
       <div>
         <input/>
+        <button>save</button>
       </div>
     )
 }
