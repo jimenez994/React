@@ -1,6 +1,7 @@
 // import the react and reactDom libraries
 import React from "react";
 // import React, { useState } from "react";
+import {TextField, Button} from "@material-ui/core"
 
 function date() {
   return (new Date().toDateString().toString());
@@ -11,7 +12,6 @@ function date() {
 const Form = (props) => {
   const title = "To Do List";
   const style = { color: 'blue' };
-  // const [name, setName] = useState('some name');
 
   return (
     <div>
@@ -19,11 +19,8 @@ const Form = (props) => {
       <p>{ date() }</p>
       {/* <h2>{name}</h2> */}
       <form onSubmit={props.onSubmit}>
-        <label htmlFor="name">Name: </label>
-        {/* <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} /> */}
-        <input id="task" type="text" value={props.task} onChange={e => props.onChange(e.target.value)} />
-
-        <button>ADD</button>
+        <TextField id="task" type="text" value={props.task} onChange={e => props.onChange(e.target.value)} />
+        <Button>ADD</Button>
       </form>
     </div>
   );
