@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from '@material-ui/core'
 
 class Edit extends React.Component {
 
@@ -10,7 +11,8 @@ class Edit extends React.Component {
     this.setState({task: e})
   }
 
-  onSubmitEdit = () => {
+  onSubmitEdit = (e) => {
+    e.preventDefault();
     let updatedTask = this.props.taskObj;
     updatedTask.task = this.state.task;
     this.props.onSubmitEdit(updatedTask, this.props.taskId);
@@ -19,10 +21,12 @@ class Edit extends React.Component {
 
   render() {
     return (
-      <div>
-        <input value={ this.state.task } onChange={e => this.onChange(e.target.value)}/>
-        <button onClick={this.onSubmitEdit}>save</button>
-      </div>
+      <React.Fragment>
+        <form onSubmit={this.onSubmitEdit}>
+          <input value={ this.state.task } onChange={e => this.onChange(e.target.value)}/>
+          <Button type="submit" >save</Button>
+        </form>
+      </React.Fragment>
     )
   }
 }

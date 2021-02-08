@@ -10,19 +10,18 @@ function date() {
 
 // Create a react component
 const Form = (props) => {
-  const title = "To Do List";
-  const style = { color: 'blue' };
+  // const onSubmit = () => {
+  //   props.onSubmit()
+  // }
 
   return (
-    <div>
-      <h1 style={style}> {title} </h1>
+    <React.Fragment>
       <p>{ date() }</p>
-      {/* <h2>{name}</h2> */}
       <form onSubmit={props.onSubmit}>
         <TextField id="task" type="text" value={props.task} onChange={e => props.onChange(e.target.value)} />
-        <Button>ADD</Button>
+        <Button type="submit" >ADD</Button>
       </form>
-    </div>
+    </React.Fragment>
   );
 };
 
