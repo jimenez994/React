@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDom from "react-dom";
+
 import Form from "./form";
 import List from "./list";
+import Header from './header';
+
 import nextId from "react-id-generator";
 import {
-  AppBar,
-  Toolbar,
-  Typography,
   Card,
   CardContent,
   CssBaseline,
+  Container,
 } from "@material-ui/core";
 
 class App extends React.Component {
@@ -50,14 +51,9 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <AppBar position="absolute" color="default">
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              To Do List
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <main>
+        <Container maxWidth="lg">
+        <Header title="To Do List"/>
+        <div className="container"> 
           <Card>
             <CardContent>
               <Form
@@ -72,7 +68,8 @@ class App extends React.Component {
               />
             </CardContent>
           </Card>
-        </main>
+          </div>
+          </Container>
       </React.Fragment>
     );
   }
