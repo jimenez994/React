@@ -1,10 +1,10 @@
 import React from "react";
-import { Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 const Header = (props) => {
   return (
-    <div>
-      <Toolbar>
+    <AppBar position="static" color="primary">
+      <Toolbar color="primary">
         <Typography
           variant="h5"
           align="center"
@@ -15,7 +15,7 @@ const Header = (props) => {
           {props.title}
         </Typography>
       </Toolbar>
-    </div>
+    </AppBar>
   );
 };
 

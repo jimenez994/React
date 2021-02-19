@@ -1,7 +1,7 @@
 // import the react and reactDom libraries
 import React from "react";
 // import React, { useState } from "react";
-import { TextField, Button, Icon } from "@material-ui/core";
+import { TextField, Button, Icon, Box } from "@material-ui/core";
 
 function date() {
   return new Date().toDateString().toString();
@@ -15,13 +15,13 @@ const Form = (props) => {
   if (task) {
     addButton = (
       <Button type="submit">
-        <Icon style={{ color: "green", fontSize: 30 }}>add_circle</Icon>
+        <Icon color="primary">add_circle</Icon>
       </Button>
     );
   }
 
   return (
-    <React.Fragment>
+    <Box mb={3}>
       <p>{date()}</p>
       <form onSubmit={onSubmit}>
         <TextField
@@ -32,7 +32,7 @@ const Form = (props) => {
         />
         {addButton}
       </form>
-    </React.Fragment>
+    </Box>
   );
 };
 

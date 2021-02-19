@@ -3,15 +3,25 @@ import ReactDom from "react-dom";
 
 import Form from "./form";
 import List from "./list";
-import Header from './header';
+import Header from "./header";
 
 import nextId from "react-id-generator";
 import {
-  Card,
   CardContent,
-  CssBaseline,
   Container,
+  createMuiTheme,
+  Paper,
+  ThemeProvider,
 } from "@material-ui/core";
+import { blue, teal } from "@material-ui/core/colors";
+
+const theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: teal,
+    secondary: blue,
+  },
+});
 
 class App extends React.Component {
   state = {
@@ -28,17 +38,19 @@ class App extends React.Component {
   onSubmit = (e) => {
     // console.log("submit");
     e.preventDefault();
-    let genId = nextId();
-    this.setState({
-      taskList: [{ id: genId, task: this.state.task }, ...this.state.taskList],
-    });
-    this.setState({ task: "" });
+    if (this.state.task) {
+      let genId = nextId();
+      this.setState({
+        taskList: [{ id: genId, task: this.state.task }, ...this.state.taskList],
+      });
+      this.setState({ task: "" });
+    }
   };
 
   onSubmitEdit = (e, id) => {
-    let updatedTaskList = this.state.taskList;
-    updatedTaskList[id] = e;
-    this.setState({ taskList: updatedTaskList });
+      let updatedTaskList = this.state.taskList;
+      updatedTaskList[id] = e;
+      this.setState({ taskList: updatedTaskList });
   };
 
   onDelete = (id) => {
@@ -50,26 +62,25 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <CssBaseline />
-        <Container maxWidth="lg">
-        <Header title="To Do List"/>
-        <div className="container"> 
-          <Card>
-            <CardContent>
-              <Form
-                onChange={this.onChange}
-                task={this.state.task}
-                onSubmit={this.onSubmit}
-              />
-              <List
-                onSubmitEdit={this.onSubmitEdit}
-                taskList={this.state.taskList}
-                onDelete={this.onDelete}
-              />
-            </CardContent>
-          </Card>
-          </div>
+        <ThemeProvider theme={theme}>
+          <Container maxWidth="md">
+            <Paper elevation={3}>
+              <Header title="To Do List" />
+              <CardContent>
+                <Form
+                  onChange={this.onChange}
+                  task={this.state.task}
+                  onSubmit={this.onSubmit}
+                />
+                <List
+                  onSubmitEdit={this.onSubmitEdit}
+                  taskList={this.state.taskList}
+                  onDelete={this.onDelete}
+                />
+              </CardContent>
+            </Paper>
           </Container>
+        </ThemeProvider>
       </React.Fragment>
     );
   }
