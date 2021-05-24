@@ -2,7 +2,7 @@ import React from "react";
 import './VideoItem.css'
 
 const VideoItem = (props) => {
-  console.log(props.video);
+  // console.log(props.video);
   let videoSnippet = props.video.snippet;
   return (
     <div className="video-item ui item" onClick={() => props.onVideoSelect(props.video)}>
