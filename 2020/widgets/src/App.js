@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import Accordion from './components/Accordion'
 // import Search from './components/Search';
 import Dropdown from "./components/Dropdown";
+import Translate from './components/Translate'
 
 const items = [
   {
@@ -35,20 +36,22 @@ const options = [
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
-  const [selected, setSelected] = useState(options[0]);
-  const [showDropdown, setShowDropdown] = useState(true);
+  const [selected, setSelected] = useState(options[2]);
+  const [showDropdown, setShowDropdown] = useState(false);
   return (
-    <div>
+    <div className="ui container">
       {/* <Accordion items={ items }/> */}
       {/* <Search/> */}
       <button onClick={()=> {setShowDropdown(!showDropdown)}}>Toggle Dropdown</button>
       {showDropdown ? 
         <Dropdown
+        label="Select a Color"
         selected={selected}
         onSelectedChange={setSelected}
         options={options}
         />: null
       }
+      <Translate/>
     </div>
   );
 };
