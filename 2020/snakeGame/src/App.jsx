@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Stage from './Stage';
+import { moveSnake,stillAlive, timer } from './actions';
 
 const App = () => {
   const [snake, setSnake] = useState({
@@ -9,6 +11,7 @@ const App = () => {
 
   let mapLength = 20;
   let food = 2;
+  let snakeTail = []
 
   useEffect(() => {
     var onDown = ({ key }) => {
@@ -23,71 +26,28 @@ const App = () => {
   })
 
   useEffect(() => {
+    if (!stillAlive(snake,mapLength)) {
+      setSnakeDirection("")
+    }
     if (snakeDirection != "") {
-      moveSnake(snakeDirection)
-      const timerId = setInterval(() => {
-        moveSnake(snakeDirection)
-      }, 200)
+      
+      setSnake(moveSnake(snakeDirection,snake))
+      const timerId = timer(() => {
+        setSnake(moveSnake(snakeDirection,snake))
+      }, 10000)
       return () => {
-        clearInterval(timerId)
+        console.log("something");
+        timerId.stop()
       }
     }
+
   }, [snakeDirection]);
 
-  const moveSnake = (direction) => {
-    console.log(direction + " *");
-    if (direction === "ArrowRight") {
-      setSnake({ y: snake.y, x: (snake.x += 1) });
-    }
-    if (direction === "ArrowLeft") {
-      setSnake({ y: snake.y, x: (snake.x -= 1) });
-    }
-    if (direction === "ArrowUp") {
-      setSnake({ y: (snake.y -= 1), x: snake.x });
-    }
-    if (direction === "ArrowDown") {
-      setSnake({ y: (snake.y += 1), x: snake.x });
-    }
-    if (
-      snake.x > mapLength ||
-      snake.x < 1 ||
-      snake.y > mapLength ||
-      snake.y < 0 
-    ) {
-      console.log("you die");
-      setSnakeDirection("")
-      return
-    }
-  }
-
-  var stage = [];
-  var stageLog = [];
-
-  var snakeString = "y" + snake.y + "x" + snake.x;
-  for (var y = 1; y <= mapLength; y++) {
-    var row = [];
-    for (var x = 1; x <= mapLength; x++) {
-      const keyX = "y" + y + `x${x}`;
-      if (snakeString == keyX) {
-        row.push(<div key={keyX} className="snake"></div>);
-      } else {
-        row.push(<div key={keyX} className="block"></div>);
-      }
-      // log for x
-      stageLog.push(keyX);
-    }
-    const keyY = y;
-    stage.push(
-      <div key={keyY} className="row">
-        {row}
-      </div>
+  return (
+    <React.Fragment>
+      <Stage snake={snake} mapLength={mapLength}/>
+  </React.Fragment>
     );
-    // log for y
-    stageLog.push(keyY);
-  }
-  console.log(stageLog);
-
-  return <div>{stage}</div>;
 };
 
 export default App;
