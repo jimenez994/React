@@ -1,53 +1,61 @@
 import React, { useState, useEffect } from "react";
-import Stage from './Stage';
-import { moveSnake,stillAlive, timer } from './actions';
+import Stage from "./Stage";
+import { moveSnake } from "./actions";
 
 const App = () => {
   const [snake, setSnake] = useState({
     y: 10,
     x: 10,
+    alive: true
   });
   const [snakeDirection, setSnakeDirection] = useState("");
 
   let mapLength = 20;
   let food = 2;
-  let snakeTail = []
+  let snakeTail = [snake];
 
   useEffect(() => {
+    if (snakeDirection != "") {
+      if (!snake.alive) {
+        setSnakeDirection("");
+        return;
+      }
+      let timerId = setTimeout(() => {
+        let newSnake = moveSnake(snakeDirection, snake, mapLength)
+        console.log(newSnake);
+        setSnake(newSnake);
+      }, 200);
+      return () => {
+        if (timerId) {
+          clearInterval(timerId);
+          timerId = null;
+        }
+      };
+    }
+  }, [snake, snakeDirection]);
+  
+  useEffect(() => {
     var onDown = ({ key }) => {
-      if (key === "ArrowDown" || key === "ArrowUp" || key === "ArrowLeft" || key === "ArrowRight") {
-        setSnakeDirection(key+"");
+      if (
+        key === "ArrowDown" ||
+        key === "ArrowUp" ||
+        key === "ArrowLeft" ||
+        key === "ArrowRight"
+      ) {
+        setSnakeDirection(key + "");
       }
     };
     window.addEventListener("keydown", onDown);
     return () => {
       window.removeEventListener("keydown", onDown);
     };
-  })
-
-  useEffect(() => {
-    if (!stillAlive(snake,mapLength)) {
-      setSnakeDirection("")
-    }
-    if (snakeDirection != "") {
-      
-      setSnake(moveSnake(snakeDirection,snake))
-      const timerId = timer(() => {
-        setSnake(moveSnake(snakeDirection,snake))
-      }, 10000)
-      return () => {
-        console.log("something");
-        timerId.stop()
-      }
-    }
-
-  }, [snakeDirection]);
+  });
 
   return (
     <React.Fragment>
-      <Stage snake={snake} mapLength={mapLength}/>
-  </React.Fragment>
-    );
+      <Stage snake={snake} mapLength={mapLength} />
+    </React.Fragment>
+  );
 };
 
 export default App;
