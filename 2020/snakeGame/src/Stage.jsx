@@ -28,9 +28,13 @@ const Stage = ({snake, mapLength}) => {
     stageLog.push(keyY);
   }
   // console.log(stageLog);
+  var id = null;
 
   return (
-    <div>{stage}</div>
+    <div className="container">
+      <div className="stage">{stage}</div>
+      {/* <div id="animation"></div> */}
+    </div>
   )
 
 }

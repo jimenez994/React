@@ -1,19 +1,20 @@
 export const moveSnake = (direction, snake,mapLength) => {
   let newSnakePosition = snake;
   if (direction === "ArrowRight") {
-    newSnakePosition = { y: snake.y, x: (snake.x += 1), alive:true };
+    newSnakePosition.x += 1;
   }
   if (direction === "ArrowLeft") {
-    newSnakePosition = { y: snake.y, x: (snake.x -= 1), alive:true };
+    newSnakePosition.x -= 1;
   }
   if (direction === "ArrowUp") {
-    newSnakePosition = { y: (snake.y -= 1), x: snake.x, alive:true };
+    newSnakePosition.y -= 1;
   }
   if (direction === "ArrowDown") {
-    newSnakePosition = { y: (snake.y += 1), x: snake.x, alive:true };
+    newSnakePosition.y += 1;
   }
   if(snake.x > mapLength || snake.x < 1 || snake.y > mapLength || snake.y < 0) {
-    newSnakePosition = { y: snake.y, x: snake.x , alive:false }
-    }
+    newSnakePosition.alive = false
+  }
+  console.log(newSnakePosition);
   return newSnakePosition;
 };

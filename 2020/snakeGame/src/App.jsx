@@ -6,34 +6,45 @@ const App = () => {
   const [snake, setSnake] = useState({
     y: 10,
     x: 10,
-    alive: true
+    alive: true,
+    direction: ""
   });
   const [snakeDirection, setSnakeDirection] = useState("");
 
-  let mapLength = 20;
-  let food = 2;
-  let snakeTail = [snake];
+  let mapLength = 20
 
   useEffect(() => {
+    if (!snake.alive) {
+      setSnakeDirection("");
+      return;
+    }
     if (snakeDirection != "") {
-      if (!snake.alive) {
-        setSnakeDirection("");
-        return;
+      if (snakeDirection != snake.direction) {
+        let newSnake = moveSnake(snakeDirection, snake, mapLength);
+        newSnake.direction = snakeDirection;
+        setSnake({
+          ...snake,
+          ...newSnake
+        })
+      } else {
+        let timerId = setTimeout(() => {
+          let newSnake = moveSnake(snakeDirection, snake, mapLength);
+          setSnake({
+            ...snake,
+            ...newSnake
+          })
+        }, 200);
+        return() => {
+          if (timerId) {
+            clearInterval(timerId);
+            timerId = null;
+          }
+        };
       }
-      let timerId = setTimeout(() => {
-        let newSnake = moveSnake(snakeDirection, snake, mapLength)
-        console.log(newSnake);
-        setSnake(newSnake);
-      }, 200);
-      return () => {
-        if (timerId) {
-          clearInterval(timerId);
-          timerId = null;
-        }
-      };
+      return
     }
   }, [snake, snakeDirection]);
-  
+
   useEffect(() => {
     var onDown = ({ key }) => {
       if (
@@ -50,10 +61,20 @@ const App = () => {
       window.removeEventListener("keydown", onDown);
     };
   });
+  const onReset = () => {
+    setSnake({
+      y: 10,
+      x: 10,
+      alive: true,
+      direction: ""
+    })
+    setSnakeDirection("")
+  }
 
   return (
     <React.Fragment>
       <Stage snake={snake} mapLength={mapLength} />
+      <button onClick={onReset}>Reset</button>
     </React.Fragment>
   );
 };
