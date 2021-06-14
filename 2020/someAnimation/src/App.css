@@ -1,0 +1,24 @@
+:root {
+  --ball-x: 0px;
+  --ball-y: 0px;
+}
+
+.stage{
+  width: 500px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: rgb(23, 196, 81);
+}
+
+#jsAnimation{
+  position: absolute;
+  left: var(--ball-x);
+  top: var(--ball-y);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+}
+
