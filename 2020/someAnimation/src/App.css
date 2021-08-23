@@ -16,8 +16,8 @@
   position: absolute;
   left: var(--ball-x);
   top: var(--ball-y);
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: black;
 }

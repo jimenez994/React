@@ -2,36 +2,48 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const App = () => {
-  const [ball, setBall] = useState({ direction: "ArrowDown", x: 1, y: 1 });
 
   let cssProperties = {};
   let root = document.documentElement;
 
-  useEffect(() => {
-    var onDown = (e) => {
-      const move = () => {
-        let newBall = ball;
-        newBall.y += 2;
-        setBall({
-          ...ball,
-          ...newBall
-        })
-        setTimeout(function () {
-          if (ball.y < 460 && ball.y > 0 && ball.x < 460 && ball.x > 0) {
-            root.style.setProperty("--ball-y", ball.y + "px");
-            move();
-          }
-        }, 7);
-      };
-      if (e.key === "ArrowDown") {
-        move()
+  let ballDirection = "";
+  let ballPosition = { x: 1, y: 1 };
+  const game = () => {
+    document.onkeydown = ({ key }) => {
+      if (
+        key === "ArrowUp" ||
+        key === "ArrowDown" ||
+        key === "ArrowRight" ||
+        key === "ArrowLeft"
+      ) {
+        ballDirection = key;
       }
     };
-    window.addEventListener("keydown", onDown);
-    return () => {
-      window.removeEventListener("keydown", onDown);
-    };
-  }, [ball]);
+    if (
+      ballPosition.y < 460 &&
+      ballPosition.y > 0 &&
+      ballPosition.x < 460 &&
+      ballPosition.x > 0
+    ) {
+      if (ballDirection === "ArrowRight") {
+        ballPosition.x += 2;
+        root.style.setProperty("--ball-x", ballPosition.x + "px");
+      }
+      if (ballDirection === "ArrowDown") {
+        ballPosition.y += 2;
+        root.style.setProperty("--ball-y", ballPosition.y + "px");
+      }
+      if (ballDirection === "ArrowLeft") {
+        ballPosition.x -= 2;
+        root.style.setProperty("--ball-x", ballPosition.x + "px");
+      }
+      if (ballDirection === "ArrowUp") {
+        ballPosition.y -= 2;
+        root.style.setProperty("--ball-y", ballPosition.y + "px");
+      }
+    } 
+  };
+  setInterval(game, 20);
 
   return (
     <div className="stage" style={cssProperties}>
