@@ -1,26 +1,29 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import './main.css';
 import api from './api';
 
 
 const App = () => {
-  const [getWeatherData, setWeatherData] = useState(null)
+  const [weatherData, setWeatherData] = useState(null)
+
   const search = async () => {
-    const response = await api.get("/current.json", {
+    console.log(import.meta.env);
+    const response = await api.get("/forecast.json", {
       params: {
-        q: "paris"
+        q: "paris",
+        days: 3
       }
     })
     setWeatherData(response.data)
     console.log(response.data);
   }
   let content = <div>...</div>
-  if (getWeatherData) {
-    console.log(getWeatherData.current);
+  if (weatherData) {
+    // console.log(weatherData.current);
   }
   return (
     <div>
-      Hello Wolrd
+      Hello World
 
       <button onClick={search}>search</button>
     </div>
