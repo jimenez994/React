@@ -7,25 +7,31 @@ const App = () => {
   const [currentForecast, setCurrentForecast] = useState(null);
   const [response, search] = useWeather("22041");
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setCurrentForecast(response);
+    setLoading(true);
+    setTimeout(() => {
+      setCurrentForecast(response);
+      setLoading(false);
+    }, 300);
   }, [response]);
 
-  let content = <div>...</div>;
-  if (currentForecast.error) {
-      content = (<div>{currentForecast.error}</div>)
-  }
-  if (currentForecast) {
-    console.log(currentForecast);
-    // console.log(currentForecast.location);
-    content = (
-      <div>
-        <img src={currentForecast.current.condition.icon} />
-        <div>{currentForecast.location.country}</div>
-        <div>{currentForecast.location.region}</div>
-      </div>
-    );
+  let content = null;
+  if (loading) {
+    content = <div>loading ....</div>;
+  } else {
+    if (currentForecast) {
+      console.log(currentForecast);
+      content = (
+        <div>
+          <h1>{Math.round(currentForecast.current.temp_f)}</h1>
+          <img src={currentForecast.current.condition.icon} />
+          <div>{currentForecast.location.country}</div>
+          <div>{currentForecast.location.region}</div>
+        </div>
+      );
+    }
   }
 
   return (
@@ -35,11 +41,12 @@ const App = () => {
       </div>
       <form
         onSubmit={(e) => {
-          e.preventDefault()
+          e.preventDefault();
           search(input);
+          setInput("")
         }}
       >
-        <input onChange={(e) => setInput(e.target.value)} />
+        <input value={input} onChange={(e) => setInput(e.target.value)} />
         <button type="submit">search</button>
       </form>
       {content}
