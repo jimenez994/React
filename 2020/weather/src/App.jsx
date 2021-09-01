@@ -25,7 +25,7 @@ const App = () => {
       console.log(currentForecast);
       content = (
         <div>
-          <h1>{Math.round(currentForecast.current.temp_f)}</h1>
+          <h1>{Math.round(currentForecast.current.temp_f)} F°</h1>
           <img src={currentForecast.current.condition.icon} />
           <div>{currentForecast.location.country}</div>
           <div>{currentForecast.location.region}</div>
