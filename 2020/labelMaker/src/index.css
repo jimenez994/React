@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  /* margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -15,15 +15,41 @@ code {
   /* outline: solid 1px rgb(138, 19, 65) */
 }
 
-.box{
-  display: inline-block;
-  width: 110px;
-  height: 40px;
-  outline: solid 1px black;
-  display:inline-flex;
-  justify-content: center;
-  align-items: center;
+.faceplate-form{
+  min-width: 250px;
 }
+
+.topLabel{
+  padding-top:2px;
+  padding-bottom: 2px;
+  outline: 1px solid;
+}
+
+.trLocation{
+  margin: 5px;
+}
+
+.main{
+  display: block;
+  margin: 0 auto;
+  width:min-content;
+  text-align: center;
+}
+
+.patchLocation div{
+  display: inline-block;
+  width: min-content;
+}
+
+.data{
+  display: inline-block;
+  margin-right: 80px;
+}
+.voice {
+  display: inline-block;
+}
+
+
 
 
 
