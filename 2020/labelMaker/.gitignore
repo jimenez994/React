@@ -1,6 +1,7 @@
 
 # dependencies
 /node_modules
+./config/default.json
 /.pnp
 .pnp.js
 

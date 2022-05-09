@@ -1,0 +1,3 @@
+{
+  "mongoURI":"mongodb+srv://pepe123:pepe123@cluster0.dotrp.mongodb.net/TelecomProjects?retryWrites=true&w=majority"
+}
