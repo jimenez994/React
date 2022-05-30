@@ -6,13 +6,21 @@ const TRSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    room: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
     },
     _port: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "port",
-    }]
+    }],
+    _project: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "project",
+    }
   },
   { timestamp: true }
 );

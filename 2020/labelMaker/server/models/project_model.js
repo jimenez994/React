@@ -17,9 +17,9 @@ const ProjectSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    _floor: [{
+    _tr: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Floor",
+      ref: "tr"
     }]
   },
   { timestamp: true }

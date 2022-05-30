@@ -9,6 +9,9 @@ const FaceplateSchema = new mongoose.Schema(
     roomNumber: {
       type: String,
     },
+    faceplateType: {
+      type: String,
+    },
     faceplateLocation: {
       type: Number,
     },
